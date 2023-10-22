@@ -1,28 +1,27 @@
 package restful.app.resources;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import restful.app.domain.User;
+import restful.app.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users/")
 public class UserResource {
+    
+    @Autowired
+    private UserService service;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<User>> findAll(){
-        User jane = new User("1", "Jane Doe", "jane@gmail.com");
-        User john = new User("2", "John Doe", "john@gmail.com");
-
-        List<User> list = new ArrayList<>();
-        list.addAll(Arrays.asList(jane, john));
-
+        List<User> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 }
