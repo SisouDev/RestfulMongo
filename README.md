@@ -1,7 +1,3 @@
-
-  <title>Project README</title>
-
-
   <h1>Project README</h1>
 
   <h2>General Description:</h2>
